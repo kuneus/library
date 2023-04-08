@@ -5,9 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <style>
+      @import url('https://fonts.cdnfonts.com/css/victorian-parlor-vintage-alternate');
+      @import url('https://fonts.cdnfonts.com/css/instagram-sans-condensed');
+    </style>
+    <title>Library</title>
   </head>
   <body>
+    <div class="header">
+      <div class="header-title">Your Library</div>
+      <div class="form-container">
+        <form action="" method="get" class="form-section">
+          <div class="form-rows">
+            <label for="book-title">Book Title:</label>
+            <input type="text" id="book-title" name="title" required />
+            <label for="book-author">Author:</label>
+            <input type="text" id="book-author" name="author" required />
+            <label for="book-status">Read the book?</label>
+            <select id="book-status" name="status" required>
+              <option value="read">Read</option>
+              <option value="currently reading">Currently reading</option>
+              <option value="to read">Want to read</option>
+            </select>
+          </div>
+          <div class="row2">
+            <button type="button" id="submit-btn">📙 Add Book!</button>
+          </div>
+        </form>
+      </div>
+      <button type="button" class="theme-toggle">Theme Toggle</button>
+    </div>
+    <div class="main">
+      <div class="background-image"></div>
+      <div class="books-section">
+        <div class="section-titles" id="temp">Books to Read</div>
+        <div id="hide-container">
+          <div class="book-cards-container" id="to-read"></div>
+        </div>
+      </div>
+      <div class="books-section">
+        <div class="section-titles">Books Currently Reading</div>
+        <div class="book-cards-container" id="currently-reading"></div>
+      </div>
+      <div class="books-section">
+        <div class="section-titles">Books Completed</div>
+        <div class="book-cards-container" id="finished"></div>
+      </div>
+    </div>
+    <div class="footer">
+      <div>Made by Kuni <a href="https://github.com/kuneus">@Kuneus</a></div>
+      <div>Background photo by <span id="img-author"></span> on Unsplash</div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

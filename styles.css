@@ -1,0 +1,230 @@
+/* 
+Partial reset taken from 
+http://meyerweb.com/eric/tools/css/reset/ 
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 16px;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+:root.light {
+  --img-author: 'Valdemaras D.';
+  --book-section-bgc: rgba(240, 240, 240, 0.569);
+  --background-image: url(images/library-light.png);
+  --font-color: black;
+  --background-color: white;
+  --card-bgc: rgba(160, 132, 98, 0.69);
+}
+
+:root.dark {
+  --img-author: 'Hieu Vu Minh';
+  --book-section-bgc: rgba(35, 35, 35, 0.524);
+  --background-image: url(images/library-dark.png);
+  --font-color: white;
+  --background-color: rgb(36, 36, 36);
+  --card-bgc: rgba(26, 26, 26, 0.69);
+}
+
+body {
+  display: grid;
+  grid-template-rows: 15vh 80vh 5vh;
+  font-family: 'Instagram Sans Condensed', sans-serif;
+  color: var(--font-color);
+  background-color: var(--background-color);
+}
+
+/* Update background author with theme toggle */
+#img-author::after {
+  content: var(--img-author);
+}
+
+.header {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+}
+
+.header-title {
+  font-family: 'Victorian Parlor Vintage Alternate', sans-serif;
+  font-size: clamp(5vw, 5rem, 7vw);
+  overflow-wrap: break-word;
+}
+
+.form-container {
+  display: grid;
+  grid-template: auto auto/ 30vw;
+  justify-self: center;
+}
+
+.form-rows {
+  display: grid;
+  grid-template: 20px 20px 20px / 1fr 2fr;
+  gap: 10px;
+}
+
+#submit-btn {
+  width: 100px;
+  margin-top: 10px;
+}
+
+.row2 {
+  display: flex;
+  justify-content: center;
+}
+
+.theme-toggle {
+  height: 40px;
+  width: 60px;
+  border-radius: 10px;
+  border-style: none;
+  justify-self: end;
+  align-self: center;
+}
+
+.main {
+  /* background-image: var(--background-image);
+  background-size: cover; */
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  padding: 25px;
+  gap: 25px;
+  position: relative;
+  overflow: scroll;
+}
+
+.background-image {
+  position: fixed;
+  background-image: var(--background-image);
+  background-size: cover;
+  height: 80vh;
+  width: 100%;
+  z-index: -1;
+  left: 1px;
+  top: 150px;
+}
+
+.books-section {
+  background-color: var(--book-section-bgc);
+  text-align: center;
+}
+
+.section-titles {
+  font-size: clamp(1rem, 2.5vw, 3rem);
+}
+
+#hide-container {
+  display: none;
+}
+
+.book-cards-container {
+  display: grid;
+  grid-template: repeat(auto-fit, minmax(250px, 1fr)) / repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    );
+  grid-auto-rows: minmax(250px, 1fr);
+}
+
+.book-cards {
+  background-color: var(--card-bgc);
+  margin: 5px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: start;
+  align-items: center;
+  padding: 5px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 5px;
+}
