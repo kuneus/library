@@ -95,6 +95,7 @@ video {
 :root.light {
   --img-author: 'Valdemaras D.';
   --book-section-bgc: rgba(240, 240, 240, 0.569);
+  --book-section-title-bgc: rgba(248, 248, 248, 0.635);
   --background-image: url(images/library-light.png);
   --font-color: black;
   --background-color: white;
@@ -104,6 +105,7 @@ video {
 :root.dark {
   --img-author: 'Hieu Vu Minh';
   --book-section-bgc: rgba(35, 35, 35, 0.524);
+  --book-section-title-bgc: rgba(16, 16, 16, 0.599);
   --background-image: url(images/library-dark.png);
   --font-color: white;
   --background-color: rgb(36, 36, 36);
@@ -168,8 +170,6 @@ body {
 }
 
 .main {
-  /* background-image: var(--background-image);
-  background-size: cover; */
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   padding: 25px;
@@ -190,16 +190,32 @@ body {
 }
 
 .books-section {
-  background-color: var(--book-section-bgc);
+  /* background-color: var(--book-section-bgc); */
   text-align: center;
 }
 
 .section-titles {
   font-size: clamp(1rem, 2.5vw, 3rem);
+  background-color: var(--book-section-title-bgc);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#hide-container {
-  display: none;
+.section-titles:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+
+.exp-coll {
+  font-size: clamp(0.8rem, 1.3vw, 2rem);
+}
+
+.collapsible {
+  /* display: block; */
+  /* max-height: 1000px; */
+  overflow: hidden;
+  transition: max-width 0.5s ease-out;
 }
 
 .book-cards-container {

@@ -64,7 +64,7 @@ function createCard() {
 
 // Takes form's input values as arguments for Book constructor then pushes to library array
 function addBookToLibrary() {
-  console.log('button clicked');
+  // console.log('button clicked');
   const titleValue = titleInput.value;
   const authorValue = authorInput.value;
   const statusValue = statusInput.value;
@@ -82,62 +82,99 @@ document
   .querySelector('#submit-btn')
   .addEventListener('click', addBookToLibrary);
 
-const temp = document.getElementById('temp');
-const showContainer = document.getElementById('hide-container');
+const sectionTitle1 = document.getElementById('section-title-1');
+const sectionTitle2 = document.getElementById('section-title-2');
+const sectionTitle3 = document.getElementById('section-title-3');
+const collapsible1 = document.getElementById('collapsible-1');
+const collapsible2 = document.getElementById('collapsible-2');
+const collapsible3 = document.getElementById('collapsible-3');
+const expColl1 = document.getElementById('expand-collapse-1');
+const expColl2 = document.getElementById('expand-collapse-2');
+const expColl3 = document.getElementById('expand-collapse-3');
 
-temp.addEventListener('click', () => {
-  if (showContainer.style.display === '') {
-    showContainer.style.display = 'block';
-  } else if (showContainer.style.display === 'block') {
-    showContainer.style.display = '';
+// variables for using as argument in sumContainerHeight function
+const toRead = 'to read';
+const read = 'read';
+const currentlyReading = 'currently reading';
+
+// function for calculating each container's book status height
+// use the above variables as arguments to target the specific container
+function sumContainerHeight(arg) {
+  let sum = 0;
+  for (let i = 0; i < myLibrary.length; i += 1) {
+    if (myLibrary[i].status === arg) {
+      sum += 1;
+    }
+  }
+  return sum;
+}
+
+// event listeners for collpasing each section
+sectionTitle1.addEventListener('click', () => {
+  console.log('section title 1 clicked');
+
+  // calculate the max possible container height of the "Books to Read" section
+  const containerHeight = sumContainerHeight(toRead) * 300 + 'px';
+
+  if (
+    collapsible1.style.maxWidth === '1200px' ||
+    collapsible1.style.maxWidth === ''
+  ) {
+    collapsible1.style.maxWidth = '0px';
+    setTimeout(() => {
+      collapsible1.style.maxHeight = '0px';
+    }, 300);
+    expColl1.textContent = 'Expand ➕';
+  } else {
+    collapsible1.style.maxWidth = '1200px';
+    setTimeout(() => {
+      collapsible1.style.maxHeight = containerHeight;
+    }, 10);
+    expColl1.textContent = 'Collapse ➖';
   }
 });
+sectionTitle2.addEventListener('click', () => {
+  console.log('section title 2 clicked');
+  const containerHeight = sumContainerHeight(currentlyReading) * 300 + 'px';
 
-/*
-function createRowV2() {
-  let resultContainer = document.createElement('div');
-  resultContainer.classList.add('rowOne');
-  resultsRow.prepend(resultContainer);
-
-  for (let i = 0; i <= 2; i++) {
-    let resultBox = document.createElement('div');
-    resultBox.classList.add('rowOneResults');
-    resultBox.textContent = guessArray[i];
-    resultContainer.appendChild(resultBox);
+  if (
+    collapsible2.style.maxWidth === '1200px' ||
+    collapsible2.style.maxWidth === ''
+  ) {
+    collapsible2.style.maxWidth = '0px';
+    setTimeout(() => {
+      collapsible2.style.maxHeight = '0px';
+    }, 300);
+    expColl2.textContent = 'Expand ➕';
+  } else {
+    collapsible2.style.maxWidth = '1200px';
+    setTimeout(() => {
+      collapsible2.style.maxHeight = containerHeight;
+    }, 10);
+    expColl2.textContent = 'Collapse ➖';
   }
+});
+sectionTitle3.addEventListener('click', () => {
+  console.log('section title 3 clicked');
+  const containerHeight = sumContainerHeight(read) * 300 + 'px';
 
-  let hintBox = document.createElement('div');
-  hintBox.classList.add('clueContainer');
-
-  if (currentTries == 0) {
-    startTimer(); //starts timer for the first submission
+  if (
+    collapsible3.style.maxWidth === '1200px' ||
+    collapsible3.style.maxWidth === ''
+  ) {
+    collapsible3.style.maxWidth = '0px';
+    setTimeout(() => {
+      collapsible3.style.maxHeight = '0px';
+    }, 300);
+    expColl3.textContent = 'Expand ➕';
+  } else {
+    collapsible3.style.maxWidth = '1200px';
+    setTimeout(() => {
+      collapsible3.style.maxHeight = containerHeight;
+    }, 10);
+    expColl3.textContent = 'Collapse ➖';
   }
-
-  currentTries += 1;
-  lineScore.textContent = currentTries;
-
-  if (correctResult === 3) {
-    hintBox.textContent = winMessage;
-    scoreArray.push(currentTries);
-    pauseTimer();
-    submit.value = 'Reset';
-  } else if (correctResult > 0 && incorrectResult > 0) {
-    hintBox.textContent =
-      correctResult +
-      ' correct and in the right spot. ' +
-      incorrectResult +
-      ' correct but in the wrong spot.';
-  } else if (correctResult > 0 && incorrectResult === 0) {
-    hintBox.textContent = correctResult + ' correct and in the right spot.';
-  } else if (correctResult === 0 && incorrectResult > 0) {
-    hintBox.textContent = incorrectResult + ' correct but in the wrong spot.';
-  } else if (correctResult === 0 && incorrectResult === 0) {
-    hintBox.textContent = wrong;
-  }
-
-  resultContainer.appendChild(hintBox);
-}
-*/
+});
 
 /*
 What to include:  
