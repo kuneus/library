@@ -95,21 +95,21 @@ video {
 :root.light {
   --img-author: 'Valdemaras D.';
   --book-section-bgc: rgba(240, 240, 240, 0.569);
-  --book-section-title-bgc: rgba(248, 248, 248, 0.635);
+  --book-section-title-bgc: rgba(248, 248, 248, 0.898);
   --background-image: url(images/library-light.png);
   --font-color: black;
   --background-color: white;
-  --card-bgc: rgba(160, 132, 98, 0.69);
+  --card-bgc: rgba(160, 132, 98, 0.902);
 }
 
 :root.dark {
   --img-author: 'Hieu Vu Minh';
   --book-section-bgc: rgba(35, 35, 35, 0.524);
-  --book-section-title-bgc: rgba(16, 16, 16, 0.599);
+  --book-section-title-bgc: rgba(16, 16, 16, 0.883);
   --background-image: url(images/library-dark.png);
   --font-color: white;
   --background-color: rgb(36, 36, 36);
-  --card-bgc: rgba(26, 26, 26, 0.69);
+  --card-bgc: rgba(26, 26, 26, 0.892);
 }
 
 body {
@@ -130,12 +130,28 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
+  position: relative;
 }
 
 .header-title {
   font-family: 'Victorian Parlor Vintage Alternate', sans-serif;
   font-size: clamp(5vw, 5rem, 7vw);
   overflow-wrap: break-word;
+}
+
+.popup {
+  position: absolute;
+  display: none;
+  height: 40vh;
+  width: 30vw;
+  left: 35%;
+  top: 30vh;
+  background-color: white;
+  color: gray;
+  z-index: 2;
+  padding: 25px;
+  box-shadow: inset 0px 0px 10px black;
+  border-radius: 10px;
 }
 
 .form-container {
@@ -170,8 +186,10 @@ body {
 }
 
 .main {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  /* display: grid;
+  grid-template-rows: 1fr 1fr 1fr; */
+  display: flex;
+  flex-direction: column;
   padding: 25px;
   gap: 25px;
   position: relative;
@@ -189,7 +207,7 @@ body {
   top: 150px;
 }
 
-/* Track */
+/* scrollbar style */
 ::-webkit-scrollbar {
   background-color: transparent;
 }
@@ -241,10 +259,44 @@ body {
   margin: 5px;
   border-radius: 10px;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  justify-items: start;
+  grid-template-rows: auto 35px;
   align-items: center;
-  padding: 5px;
+}
+
+.card-top-content {
+  margin: 0px;
+  justify-self: start;
+  text-align: left;
+  padding: 10px;
+}
+
+.card-bottom-content {
+  margin: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-self: end;
+}
+
+.edit-btn,
+.delete-btn {
+  border-style: none;
+  height: 35px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  filter: brightness(120%);
+  box-shadow: inset 0px 0px 5px rgb(88, 51, 0);
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: rgba(232, 178, 0, 0.808);
+}
+
+.delete-btn {
+  background-color: rgba(141, 92, 0, 0.816);
 }
 
 .footer {

@@ -1,8 +1,11 @@
 // const { doc } = require('prettier');
 
+// const { doc } = require("prettier");
+
 const submitBtn = document.getElementById('submit-btn');
 const titleInput = document.getElementById('book-title');
 const authorInput = document.getElementById('book-author');
+const pageInput = document.getElementById('page-input');
 const statusInput = document.getElementById('book-status');
 
 // toggle light/dark theme
@@ -18,14 +21,16 @@ setTheme();
 let myLibrary = [];
 
 // the book constructor
-function Book(title, author, status) {
+function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
-  // this.pages = pages; ADD LATER
+  this.pages = pages;
   this.status = status;
 }
 
+// create new card when new book is added\
 function createCard() {
+  // variables for each of the three book sections based on read status
   const toReadContainer = document.getElementById('to-read');
   const currentlyReadingContainer =
     document.getElementById('currently-reading');
@@ -34,17 +39,36 @@ function createCard() {
   // Create DOM element for new book card
   const bookCard = document.createElement('div');
   bookCard.classList.add('book-cards');
+  const cardTopContent = document.createElement('div');
+  cardTopContent.classList.add('card-top-content');
+  bookCard.appendChild(cardTopContent);
+  const cardBottomContent = document.createElement('div');
+  cardBottomContent.classList.add('card-bottom-content');
+  bookCard.appendChild(cardBottomContent);
 
   // create DOM elements for text lines
   const titleLine = document.createElement('div');
   titleLine.classList.add('title-line');
   const authorLine = document.createElement('div');
   authorLine.classList.add('author-line');
+  const pagesLine = document.createElement('div');
+  pagesLine.classList.add('pages-line');
   const statusLine = document.createElement('div');
   statusLine.classList.add('status-line');
-  bookCard.appendChild(titleLine);
-  bookCard.appendChild(authorLine);
-  bookCard.appendChild(statusLine);
+  cardTopContent.appendChild(titleLine);
+  cardTopContent.appendChild(authorLine);
+  cardTopContent.appendChild(pagesLine);
+  cardTopContent.appendChild(statusLine);
+
+  // create Edit and Delete button
+  const editBtn = document.createElement('button');
+  editBtn.classList.add('edit-btn');
+  editBtn.textContent = 'EDIT';
+  cardBottomContent.appendChild(editBtn);
+  const deleteBtn = document.createElement('button');
+  deleteBtn.classList.add('delete-btn');
+  deleteBtn.textContent = 'DELETE';
+  cardBottomContent.appendChild(deleteBtn);
 
   // loop to iterate through myLibrary object array and append new book card
   for (let i = 0; i < myLibrary.length; i += 1) {
@@ -58,6 +82,7 @@ function createCard() {
 
     titleLine.textContent = `Title:  ${myLibrary[i].title}`;
     authorLine.textContent = `Author:  ${myLibrary[i].author}`;
+    pagesLine.textContent = `Pages:  ${myLibrary[i].pages}`;
     statusLine.textContent = `Status:  ${myLibrary[i].status}`;
   }
 }
@@ -67,20 +92,20 @@ function addBookToLibrary() {
   // console.log('button clicked');
   const titleValue = titleInput.value;
   const authorValue = authorInput.value;
+  const pagesValue = pageInput.value;
   const statusValue = statusInput.value;
-  const book1 = new Book(titleValue, authorValue, statusValue);
+  const book1 = new Book(titleValue, authorValue, pagesValue, statusValue);
   myLibrary.push(book1);
 
   // clear input fields
   titleInput.value = '';
   authorInput.value = '';
+  pageInput.value = '';
   createCard();
 }
 
 // event listener for submit button
-document
-  .querySelector('#submit-btn')
-  .addEventListener('click', addBookToLibrary);
+submitBtn.addEventListener('click', addBookToLibrary);
 
 const sectionTitle1 = document.getElementById('section-title-1');
 const sectionTitle2 = document.getElementById('section-title-2');
@@ -177,19 +202,20 @@ sectionTitle3.addEventListener('click', () => {
 });
 
 /*
-What to include:  
-- separate into 3 sections
-  - books read, currently reading, to read
-- total pages read
 
-
+to-do:
+- add delete button to each book
+- add edit button to update read status
+- add 'pages' property
 
 
 */
 
 /*  INSTRUCTIONS
 If you haven’t already, set up your project with skeleton HTML/CSS and JS files.
-All of your book objects are going to be stored in a simple array, so add a function to the script (not the constructor) that can take user’s input and store the new book objects into an array. Your code should look something like this:
+All of your book objects are going to be stored in a simple array, so add a 
+function to the script (not the constructor) that can take user’s input and store 
+the new book objects into an array. Your code should look something like this:
 
 let myLibrary = [];
 
@@ -200,11 +226,25 @@ function Book() {
 function addBookToLibrary() {
   // do stuff here
 }
-Write a function that loops through the array and displays each book on the page. You can display them in some sort of table, or each on their own “card”. It might help for now to manually add a few books to your array so you can see the display.
-Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. You will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. If you’ve done the bonus section for the calculator assignment, you might be familiar with event.preventDefault();. Read up on the event.preventDefault documentation again and see how you can solve this issue!
+Write a function that loops through the array and displays each book on the page. 
+You can display them in some sort of table, or each on their own “card”. It might 
+help for now to manually add a few books to your array so you can see the display.
+Add a “NEW BOOK” button that brings up a form allowing users to input the details 
+for the new book: author, title, number of pages, whether it’s been read and 
+anything else you might want. You will most likely encounter an issue where 
+submitting your form will not do what you expect it to do. That’s because the 
+submit input tries to send the data to a server by default. If you’ve done the 
+bonus section for the calculator assignment, you might be familiar with 
+event.preventDefault();. Read up on the event.preventDefault documentation again 
+and see how you can solve this issue!
+
 Add a button on each book’s display to remove the book from the library.
-You will need to associate your DOM elements with the actual book objects in some way. One easy solution is giving them a data-attribute that corresponds to the index of the library array.
+You will need to associate your DOM elements with the actual book objects in some
+ way. One easy solution is giving them a data-attribute that corresponds to the 
+ index of the library array.
 Add a button on each book’s display to change its read status.
-To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
-NOTE: You’re not required to add any type of storage right now. You will have the option to come back to this project later on in the course.
+To facilitate this you will want to create the function that toggles a book’s read 
+status on your Book prototype instance.
+NOTE: You’re not required to add any type of storage right now. You will have the 
+option to come back to this project later on in the course.
 */
