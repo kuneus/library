@@ -175,7 +175,7 @@ body {
   padding: 25px;
   gap: 25px;
   position: relative;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .background-image {
@@ -189,8 +189,19 @@ body {
   top: 150px;
 }
 
+/* Track */
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(92, 92, 92);
+  box-shadow: inset 3px 3px 5px rgb(178, 178, 178),
+    inset -3px -3px 10px rgb(56, 56, 56);
+  border-radius: 10px;
+}
+
 .books-section {
-  /* background-color: var(--book-section-bgc); */
   text-align: center;
 }
 
@@ -212,8 +223,6 @@ body {
 }
 
 .collapsible {
-  /* display: block; */
-  /* max-height: 1000px; */
   overflow: hidden;
   transition: max-width 0.5s ease-out;
 }
