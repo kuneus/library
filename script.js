@@ -39,6 +39,7 @@ function createCard() {
   // Create DOM element for new book card
   const bookCard = document.createElement('div');
   bookCard.classList.add('book-cards');
+  bookCard.setAttribute('id', `book-card-${myLibrary.length}`);
   const cardTopContent = document.createElement('div');
   cardTopContent.classList.add('card-top-content');
   bookCard.appendChild(cardTopContent);
@@ -62,12 +63,15 @@ function createCard() {
 
   // create Edit and Delete button
   const editBtn = document.createElement('button');
-  editBtn.classList.add('edit-btn');
-  editBtn.textContent = 'EDIT';
-  cardBottomContent.appendChild(editBtn);
   const deleteBtn = document.createElement('button');
+  editBtn.classList.add('edit-btn');
   deleteBtn.classList.add('delete-btn');
+  // set id equal to location in myLibrary array
+  editBtn.setAttribute('id', `edit-btn-${myLibrary.length}`);
+  deleteBtn.setAttribute('id', `delete-btn-${myLibrary.length}`);
+  editBtn.textContent = 'EDIT';
   deleteBtn.textContent = 'DELETE';
+  cardBottomContent.appendChild(editBtn);
   cardBottomContent.appendChild(deleteBtn);
 
   // loop to iterate through myLibrary object array and append new book card
@@ -107,6 +111,14 @@ function addBookToLibrary() {
 // event listener for submit button
 submitBtn.addEventListener('click', addBookToLibrary);
 
+// event listener for delete button
+document.addEventListener('click', (event) => {
+  if (event.target.matches('.delete-btn')) {
+    let grandParent = event.target.parentElement.parentElement;
+    grandParent.remove();
+  }
+});
+
 const sectionTitle1 = document.getElementById('section-title-1');
 const sectionTitle2 = document.getElementById('section-title-2');
 const sectionTitle3 = document.getElementById('section-title-3');
@@ -136,8 +148,6 @@ function sumContainerHeight(arg) {
 
 // event listeners for collpasing each section
 sectionTitle1.addEventListener('click', () => {
-  console.log('section title 1 clicked');
-
   // calculate the max possible container height of the "Books to Read" section
   const containerHeight = sumContainerHeight(toRead) * 300 + 'px';
 
@@ -159,7 +169,6 @@ sectionTitle1.addEventListener('click', () => {
   }
 });
 sectionTitle2.addEventListener('click', () => {
-  console.log('section title 2 clicked');
   const containerHeight = sumContainerHeight(currentlyReading) * 300 + 'px';
 
   if (
@@ -180,7 +189,6 @@ sectionTitle2.addEventListener('click', () => {
   }
 });
 sectionTitle3.addEventListener('click', () => {
-  console.log('section title 3 clicked');
   const containerHeight = sumContainerHeight(read) * 300 + 'px';
 
   if (
