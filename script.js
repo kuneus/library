@@ -270,7 +270,7 @@ sectionTitle1.addEventListener('click', () => {
     collapsible1.style.maxWidth = '0px';
     setTimeout(() => {
       collapsible1.style.maxHeight = '0px';
-    }, 300);
+    }, 100);
     expColl1.textContent = 'Expand ➕';
   } else {
     collapsible1.style.maxWidth = '1200px';
@@ -290,7 +290,7 @@ sectionTitle2.addEventListener('click', () => {
     collapsible2.style.maxWidth = '0px';
     setTimeout(() => {
       collapsible2.style.maxHeight = '0px';
-    }, 300);
+    }, 100);
     expColl2.textContent = 'Expand ➕';
   } else {
     collapsible2.style.maxWidth = '1200px';
@@ -310,7 +310,7 @@ sectionTitle3.addEventListener('click', () => {
     collapsible3.style.maxWidth = '0px';
     setTimeout(() => {
       collapsible3.style.maxHeight = '0px';
-    }, 300);
+    }, 100);
     expColl3.textContent = 'Expand ➕';
   } else {
     collapsible3.style.maxWidth = '1200px';
@@ -321,6 +321,109 @@ sectionTitle3.addEventListener('click', () => {
   }
 });
 
+// load page with sample books to library
+const sampleBook1 = new Book(
+  'An Enquiry Concerning Human Understanding',
+  'David Hume',
+  '119',
+  'currently reading',
+);
+myLibrary.push(sampleBook1);
+createCard();
+
+const sampleBook2 = new Book(
+  'Introduction to Mathematical Philosophy',
+  'Bertrand Russell',
+  '208',
+  'to read',
+);
+myLibrary.push(sampleBook2);
+createCard();
+
+const sampleBook3 = new Book(
+  'The Birth of the Clinic: An Archaeology of Medical Perception',
+  'Michel Foucault',
+  '102400',
+  'read',
+);
+myLibrary.push(sampleBook3);
+createCard();
+
+const sampleBook4 = new Book('The Republic', 'Plato', '416', 'read');
+myLibrary.push(sampleBook4);
+createCard();
+
+const sampleBook5 = new Book(
+  'Against Method',
+  'Paul Feyerabend',
+  '296',
+  'read',
+);
+myLibrary.push(sampleBook5);
+createCard();
+
+const sampleBook6 = new Book(
+  'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself',
+  'Sean Carroll',
+  '480',
+  'read',
+);
+myLibrary.push(sampleBook6);
+createCard();
+
+const sampleBook7 = new Book(
+  'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself',
+  'Sean Carroll',
+  '480',
+  'read',
+);
+myLibrary.push(sampleBook7);
+createCard();
+
+const sampleBook8 = new Book(
+  'The Demon-Haunted World: Science as a Candle in the Dark',
+  'Carl Sagan',
+  '459',
+  'read',
+);
+myLibrary.push(sampleBook8);
+createCard();
+
+const sampleBook9 = new Book(
+  'Beyond Good and Evil',
+  'Friedrich Nietzsche',
+  '240',
+  'read',
+);
+myLibrary.push(sampleBook9);
+createCard();
+
+const sampleBook10 = new Book(
+  'Philosophical Foundations of Neuroscience',
+  'M.R. Bennett, P.M. Hacker',
+  '480',
+  'currently reading',
+);
+myLibrary.push(sampleBook10);
+createCard();
+
+const sampleBook11 = new Book(
+  'The Logic of Scientific Discovery',
+  'Karl Popper',
+  '544',
+  'currently reading',
+);
+myLibrary.push(sampleBook11);
+createCard();
+
+const sampleBook12 = new Book(
+  'Critique of Pure Reason',
+  'Immanuel Kant',
+  '785',
+  'to read',
+);
+myLibrary.push(sampleBook12);
+createCard();
 /*
 
 to-do:
