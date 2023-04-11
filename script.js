@@ -43,6 +43,9 @@ function createCard() {
   const cardTopContent = document.createElement('div');
   cardTopContent.classList.add('card-top-content');
   bookCard.appendChild(cardTopContent);
+  const cardMiddleContent = document.createElement('div');
+  cardMiddleContent.classList.add('card-middle-content');
+  bookCard.appendChild(cardMiddleContent);
   const cardBottomContent = document.createElement('div');
   cardBottomContent.classList.add('card-bottom-content');
   bookCard.appendChild(cardBottomContent);
@@ -50,22 +53,62 @@ function createCard() {
   // create DOM elements for text lines
   const titleLine = document.createElement('div');
   titleLine.classList.add('title-line');
+  const titleValue = document.createElement('div');
+  titleValue.classList.add('title-value');
   const authorLine = document.createElement('div');
   authorLine.classList.add('author-line');
+  const authorValue = document.createElement('div');
+  authorValue.classList.add('author-value');
   const pagesLine = document.createElement('div');
   pagesLine.classList.add('pages-line');
+  const pagesValue = document.createElement('div');
+  pagesValue.classList.add('pages-value');
   const statusLine = document.createElement('div');
   statusLine.classList.add('status-line');
+  const statusValue = document.createElement('div');
+  statusValue.classList.add('status-value');
   cardTopContent.appendChild(titleLine);
+  cardTopContent.appendChild(titleValue);
   cardTopContent.appendChild(authorLine);
+  cardTopContent.appendChild(authorValue);
   cardTopContent.appendChild(pagesLine);
+  cardTopContent.appendChild(pagesValue);
   cardTopContent.appendChild(statusLine);
+  cardTopContent.appendChild(statusValue);
 
   // create Edit and Delete button
   const editBtn = document.createElement('button');
   const deleteBtn = document.createElement('button');
   editBtn.classList.add('edit-btn');
   deleteBtn.classList.add('delete-btn');
+
+  // create Edit options
+  const editOptionsContainer = document.createElement('div');
+  editOptionsContainer.classList.add('edit-options-container');
+  cardMiddleContent.appendChild(editOptionsContainer);
+  const editLabel = document.createElement('label');
+  editLabel.setAttribute('for', `input1-${myLibrary.length}`);
+  editLabel.textContent = 'Change read status:  ';
+  editOptionsContainer.appendChild(editLabel);
+  const editOptions = document.createElement('select');
+  editOptionsContainer.appendChild(editOptions);
+  editOptions.setAttribute('name', 'status');
+  editOptions.setAttribute('id', `input1-${myLibrary.length}`);
+  editOptions.setAttribute('name', 'read-status');
+  editOptions.classList.add('update-status');
+  const option1 = document.createElement('option');
+  option1.setAttribute('value', 'read');
+  option1.textContent = 'Read';
+  editOptions.appendChild(option1);
+  const option2 = document.createElement('option');
+  option2.setAttribute('value', 'currently reading');
+  option2.textContent = 'Currently reading';
+  editOptions.appendChild(option2);
+  const option3 = document.createElement('option');
+  option3.setAttribute('value', 'to read');
+  option3.textContent = 'Want to read';
+  editOptions.appendChild(option3);
+
   // set id equal to location in myLibrary array
   editBtn.setAttribute('id', `edit-btn-${myLibrary.length}`);
   deleteBtn.setAttribute('id', `delete-btn-${myLibrary.length}`);
@@ -84,10 +127,14 @@ function createCard() {
       toReadContainer.appendChild(bookCard);
     }
 
-    titleLine.textContent = `Title:  ${myLibrary[i].title}`;
-    authorLine.textContent = `Author:  ${myLibrary[i].author}`;
-    pagesLine.textContent = `Pages:  ${myLibrary[i].pages}`;
-    statusLine.textContent = `Status:  ${myLibrary[i].status}`;
+    titleLine.textContent = 'Title:';
+    titleValue.textContent = `${myLibrary[i].title}`;
+    authorLine.textContent = 'Author:';
+    authorValue.textContent = ` ${myLibrary[i].author}`;
+    pagesLine.textContent = 'Pages:';
+    pagesValue.textContent = `${myLibrary[i].pages}`;
+    statusLine.textContent = 'Status:';
+    statusValue.textContent = `${myLibrary[i].status}`;
   }
 }
 
@@ -114,8 +161,44 @@ submitBtn.addEventListener('click', addBookToLibrary);
 // event listener for delete button
 document.addEventListener('click', (event) => {
   if (event.target.matches('.delete-btn')) {
-    let grandParent = event.target.parentElement.parentElement;
+    // grandparent of delete button is the book card
+    const grandParent = event.target.parentElement.parentElement;
     grandParent.remove();
+  }
+});
+
+// event listener for edit button
+document.addEventListener('click', (event) => {
+  if (event.target.matches('.edit-btn')) {
+    const placeHolder = event.target;
+    const grandParent = placeHolder.parentElement.parentElement;
+    const editOptionsContainer = grandParent.querySelector(
+      '.edit-options-container',
+    );
+
+    const titleValue = grandParent.querySelector('.title-value').textContent;
+    const authorValue = grandParent.querySelector('.author-value').textContent;
+    const pagesValue = grandParent.querySelector('.pages-value').textContent;
+    const updateStatusValue = grandParent.querySelector('.update-status').value;
+    const book1 = new Book(
+      titleValue,
+      authorValue,
+      pagesValue,
+      updateStatusValue,
+    );
+
+    // change edit button text to 'update' and display hidden div with read status choices
+    if (placeHolder.textContent === 'EDIT') {
+      placeHolder.textContent = 'UPDATE';
+      editOptionsContainer.style.display = 'block';
+      placeHolder.style.backgroundColor = 'green';
+    } else if (placeHolder.textContent === 'UPDATE') {
+      placeHolder.textContent = 'EDIT';
+      editOptionsContainer.style.display = 'none';
+      myLibrary.push(book1);
+      createCard();
+      grandParent.remove();
+    }
   }
 });
 
@@ -212,9 +295,7 @@ sectionTitle3.addEventListener('click', () => {
 /*
 
 to-do:
-- add delete button to each book
 - add edit button to update read status
-- add 'pages' property
 
 
 */
