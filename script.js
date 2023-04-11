@@ -140,11 +140,11 @@ function createCard() {
 
 // Takes form's input values as arguments for Book constructor then pushes to library array
 function addBookToLibrary() {
-  // console.log('button clicked');
   const titleValue = titleInput.value;
   const authorValue = authorInput.value;
   const pagesValue = pageInput.value;
   const statusValue = statusInput.value;
+
   const book1 = new Book(titleValue, authorValue, pagesValue, statusValue);
   myLibrary.push(book1);
 
@@ -154,6 +154,23 @@ function addBookToLibrary() {
   pageInput.value = '';
   createCard();
 }
+
+const addBookBtn = document.getElementById('add-book-btn');
+const popup = document.getElementById('form-popup');
+const closeBtn = document.getElementById('close-btn');
+
+// opens and closes popup
+function togglePopup() {
+  if (popup.style.display === 'none' || popup.style.display === '') {
+    popup.style.display = 'block';
+  } else if (popup.style.display === 'block') {
+    popup.style.display = 'none';
+  }
+}
+
+// event listeners for add new book button and close button
+addBookBtn.addEventListener('click', togglePopup);
+closeBtn.addEventListener('click', togglePopup);
 
 // event listener for submit button
 submitBtn.addEventListener('click', addBookToLibrary);
@@ -193,8 +210,7 @@ document.addEventListener('click', (event) => {
       editOptionsContainer.style.display = 'block';
       placeHolder.style.backgroundColor = 'green';
     } else if (placeHolder.textContent === 'UPDATE') {
-      // placeHolder.textContent = 'EDIT';
-      // editOptionsContainer.style.display = 'none';
+      // if user chooses same choice of current card, returns style back to normal
       if (
         updateStatusValue ===
         grandParent.querySelector('.status-value').textContent
@@ -203,6 +219,7 @@ document.addEventListener('click', (event) => {
         editOptionsContainer.style.display = 'none';
         placeHolder.style.backgroundColor = 'var(--edit-btn-color)';
       } else {
+        // if user chooses new update status, makes a new card and deletes current one
         myLibrary.push(book1);
         createCard();
         grandParent.remove();
@@ -304,9 +321,6 @@ sectionTitle3.addEventListener('click', () => {
 /*
 
 to-do:
-- add popup form for new book submission
 - add javascript validation or turn button into submit button and use event.preventdefault
-- update toggle button to icon
-
 
 */

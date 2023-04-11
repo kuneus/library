@@ -130,7 +130,7 @@ body {
 .header {
   padding: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   position: relative;
 }
@@ -145,51 +145,90 @@ body {
   position: absolute;
   display: none;
   height: 40vh;
-  width: 30vw;
+  width: clamp(300px, 30vw, 700px);
   left: 35%;
   top: 30vh;
   background-color: white;
   color: gray;
   z-index: 2;
-  padding: 25px;
-  box-shadow: inset 0px 0px 10px black;
+  box-shadow: inset 0px 0px 20px rgb(166, 166, 166);
   border-radius: 10px;
 }
 
 .form-container {
   display: grid;
-  grid-template: auto auto/ 30vw;
-  justify-self: center;
+  height: 100%;
+  grid-template: 4fr 1fr/ 100%;
 }
 
 .form-rows {
   display: grid;
   grid-template: 20px 20px 20px / 1fr 2fr;
   gap: 10px;
+  padding: 25px;
 }
 
 #submit-btn {
-  width: 100px;
-  margin-top: 10px;
+  background-color: green;
+  border-style: none;
+  border-radius: 0px;
+  border-bottom-left-radius: 10px;
+}
+
+#close-btn {
+  background-color: red;
+  border-style: none;
+  border-radius: 0px;
+  border-bottom-right-radius: 10px;
+}
+
+#submit-btn:hover,
+#close-btn:hover {
+  cursor: pointer;
+  box-shadow: inset 0px 0px 20px rgba(47, 47, 47, 0.622);
 }
 
 .row2 {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.top-btns {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
 }
 
 .theme-toggle {
   height: 40px;
-  width: 60px;
-  border-radius: 10px;
-  border-style: none;
+  width: 40px;
   justify-self: end;
   align-self: center;
+  fill: var(--font-color);
+}
+
+.theme-toggle:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.add-book {
+  height: 40px;
+  width: 40px;
+  justify-self: end;
+}
+
+.add-book:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* property for add book fill color */
+#add-book-fill-prop {
+  fill: var(--font-color);
 }
 
 .main {
-  /* display: grid;
-  grid-template-rows: 1fr 1fr 1fr; */
   display: flex;
   flex-direction: column;
   padding: 25px;
