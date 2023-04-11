@@ -100,6 +100,7 @@ video {
   --font-color: black;
   --background-color: white;
   --card-bgc: rgba(160, 132, 98, 0.902);
+  --edit-btn-color: rgba(232, 178, 0, 0.808);
 }
 
 :root.dark {
@@ -110,6 +111,7 @@ video {
   --font-color: white;
   --background-color: rgb(36, 36, 36);
   --card-bgc: rgba(26, 26, 26, 0.892);
+  --edit-btn-color: rgba(232, 178, 0, 0.808);
 }
 
 body {
