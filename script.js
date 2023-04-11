@@ -145,14 +145,17 @@ function addBookToLibrary() {
   const pagesValue = pageInput.value;
   const statusValue = statusInput.value;
 
-  const book1 = new Book(titleValue, authorValue, pagesValue, statusValue);
-  myLibrary.push(book1);
+  if (titleValue !== '' && authorValue !== '' && pagesValue !== '') {
+    const book1 = new Book(titleValue, authorValue, pagesValue, statusValue);
+    myLibrary.push(book1);
 
-  // clear input fields
-  titleInput.value = '';
-  authorInput.value = '';
-  pageInput.value = '';
-  createCard();
+    // clear input fields
+    titleInput.value = '';
+    authorInput.value = '';
+    pageInput.value = '';
+    createCard();
+    togglePopup();
+  }
 }
 
 const addBookBtn = document.getElementById('add-book-btn');

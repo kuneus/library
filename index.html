@@ -15,28 +15,26 @@
     <div class="header">
       <div class="header-title">Your Library</div>
       <div class="popup" id="form-popup">
-        <div class="form-container">
-          <form action="" method="get" class="form-section">
-            <div class="form-rows">
-              <label for="book-title">Book Title:</label>
-              <input type="text" id="book-title" name="title" required />
-              <label for="book-author">Author:</label>
-              <input type="text" id="book-author" name="author" required />
-              <label for="page-input">Pages:</label>
-              <input type="tel" id="page-input" name="page" required />
-              <label for="book-status">Read the book?</label>
-              <select id="book-status" name="status" required>
-                <option value="read">Read</option>
-                <option value="currently reading">Currently reading</option>
-                <option value="to read">Want to read</option>
-              </select>
-            </div>
-          </form>
+        <form action="" method="get" class="form-container">
+          <div class="form-rows">
+            <label for="book-title">Book Title:</label>
+            <input type="text" id="book-title" name="title" required />
+            <label for="book-author">Author:</label>
+            <input type="text" id="book-author" name="author" required />
+            <label for="page-input">Pages:</label>
+            <input type="tel" id="page-input" name="page" required />
+            <label for="book-status">Read the book?</label>
+            <select id="book-status" name="status" required>
+              <option value="read">Read</option>
+              <option value="currently reading">Currently reading</option>
+              <option value="to read">Want to read</option>
+            </select>
+          </div>
           <div class="row2">
-            <button type="button" id="submit-btn">📙 Add Book!</button>
+            <button type="submit" id="submit-btn">📙 Add Book!</button>
             <button type="button" id="close-btn">Close</button>
           </div>
-        </div>
+        </form>
       </div>
 
       <div class="top-btns">
