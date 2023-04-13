@@ -20,7 +20,7 @@ setTheme();
 
 let myLibrary = [];
 
-// the book constructor
+// book constructor
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
@@ -28,7 +28,7 @@ function Book(title, author, pages, status) {
   this.status = status;
 }
 
-// create new card when new book is added\
+// create new card when new book is added
 function createCard() {
   // variables for each of the three book sections based on read status
   const toReadContainer = document.getElementById('to-read');
@@ -117,7 +117,7 @@ function createCard() {
   cardBottomContent.appendChild(editBtn);
   cardBottomContent.appendChild(deleteBtn);
 
-  // loop to iterate through myLibrary object array and append new book card
+  // iterate through myLibrary object array and append new book card
   for (let i = 0; i < myLibrary.length; i += 1) {
     if (myLibrary[i].status === 'read') {
       booksFinishedContainer.appendChild(bookCard);
@@ -372,9 +372,9 @@ myLibrary.push(sampleBook6);
 createCard();
 
 const sampleBook7 = new Book(
-  'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself',
-  'Sean Carroll',
-  '480',
+  'The Structure of Scientific Revolutions',
+  'Thomas Kuhn',
+  '226',
   'read',
 );
 myLibrary.push(sampleBook7);
@@ -424,9 +424,3 @@ const sampleBook12 = new Book(
 );
 myLibrary.push(sampleBook12);
 createCard();
-/*
-
-to-do:
-- add javascript validation or turn button into submit button and use event.preventdefault
-
-*/

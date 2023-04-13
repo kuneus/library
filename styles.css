@@ -95,22 +95,22 @@ video {
 :root.light {
   --img-author: 'Valdemaras D.';
   --book-section-bgc: rgba(240, 240, 240, 0.569);
-  --book-section-title-bgc: rgba(248, 248, 248, 0.898);
+  --book-section-title-bgc: rgba(255, 187, 29, 0.917);
   --background-image: url(images/library-light.png);
   --font-color: black;
   --background-color: white;
-  --card-bgc: rgba(160, 132, 98, 0.902);
+  --card-bgc: rgb(207, 207, 207);
   --edit-btn-color: rgba(232, 178, 0, 0.808);
 }
 
 :root.dark {
   --img-author: 'Hieu Vu Minh';
   --book-section-bgc: rgba(35, 35, 35, 0.524);
-  --book-section-title-bgc: rgba(16, 16, 16, 0.883);
+  --book-section-title-bgc: rgba(113, 43, 0, 0.915);
   --background-image: url(images/library-dark.png);
   --font-color: white;
   --background-color: rgb(36, 36, 36);
-  --card-bgc: rgba(26, 26, 26, 0.892);
+  --card-bgc: rgb(26, 26, 26);
   --edit-btn-color: rgba(232, 178, 0, 0.808);
 }
 
@@ -118,8 +118,14 @@ body {
   display: grid;
   grid-template-rows: 15vh 80vh 5vh;
   font-family: 'Instagram Sans Condensed', sans-serif;
+  letter-spacing: 1px;
   color: var(--font-color);
   background-color: var(--background-color);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(79, 79, 255);
 }
 
 /* Update background author with theme toggle */
@@ -127,18 +133,26 @@ body {
   content: var(--img-author);
 }
 
+/* <-----HEADER-----> */
 .header {
   padding: 15px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   justify-content: space-between;
   position: relative;
 }
 
+.header-icon {
+  width: 100px;
+  height: 100px;
+}
+
 .header-title {
   font-family: 'Victorian Parlor Vintage Alternate', sans-serif;
-  font-size: clamp(5vw, 5rem, 7vw);
+  font-size: clamp(4rem, 7vw, 6rem);
   overflow-wrap: break-word;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .popup {
@@ -186,10 +200,10 @@ body {
 #submit-btn:hover,
 #close-btn:hover {
   cursor: pointer;
-  box-shadow: inset 0px 0px 20px rgba(47, 47, 47, 0.622);
+  filter: brightness(90%);
 }
 
-.row2 {
+.form-rows-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -208,9 +222,11 @@ body {
   fill: var(--font-color);
 }
 
-.theme-toggle:hover {
+.theme-toggle:hover,
+.add-book:hover {
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.1);
+  filter: drop-shadow(0px 0px 2px var(--font-color));
 }
 
 .add-book {
@@ -219,20 +235,15 @@ body {
   justify-self: end;
 }
 
-.add-book:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-/* property for add book fill color */
+/* property for add book SVG fill color */
 #add-book-fill-prop {
   fill: var(--font-color);
 }
 
+/* <-----MAIN-----> */
 .main {
   display: flex;
   flex-direction: column;
-  padding: 25px;
   gap: 25px;
   position: relative;
   overflow: auto;
@@ -246,7 +257,7 @@ body {
   width: 100%;
   z-index: -1;
   left: 1px;
-  top: 150px;
+  top: 140px;
 }
 
 /* scrollbar style */
@@ -261,21 +272,19 @@ body {
   border-radius: 10px;
 }
 
-.books-section {
-  text-align: center;
-}
-
+/* Headers for each book section */
 .section-titles {
   font-size: clamp(1rem, 2.5vw, 3rem);
   background-color: var(--book-section-title-bgc);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0px 10px;
 }
 
 .section-titles:hover {
   cursor: pointer;
-  transform: scale(1.01);
+  filter: brightness(120%);
 }
 
 .exp-coll {
@@ -285,6 +294,7 @@ body {
 .collapsible {
   overflow: hidden;
   transition: max-width 0.3s ease-out;
+  padding: 10px;
 }
 
 .book-cards-container {
@@ -299,10 +309,11 @@ body {
 .book-cards {
   background-color: var(--card-bgc);
   margin: 5px;
-  border-radius: 10px;
+  border-radius: 12px;
   display: grid;
   grid-template-rows: auto 35px;
   align-items: center;
+  /* border: 4px groove gold; */
 }
 
 .card-top-content {
@@ -328,11 +339,17 @@ body {
   height: 35px;
 }
 
+.edit-btn {
+  border-bottom-left-radius: 10px;
+}
+
+.delete-btn {
+  border-bottom-right-radius: 10px;
+}
+
 .edit-btn:hover,
 .delete-btn:hover {
   filter: brightness(120%);
-  box-shadow: inset 0px 0px 5px rgb(88, 51, 0);
-  transform: scale(1.03);
   cursor: pointer;
 }
 
@@ -348,9 +365,11 @@ body {
   display: none;
 }
 
+/* <-----FOOTER-----> */
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   padding: 5px;
+  background-color: inherit;
 }
