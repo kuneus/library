@@ -1,7 +1,4 @@
-// const { doc } = require('prettier');
-
-// const { doc } = require("prettier");
-
+// DOM elements
 const submitBtn = document.getElementById('submit-btn');
 const titleInput = document.getElementById('book-title');
 const authorInput = document.getElementById('book-author');
@@ -21,11 +18,18 @@ setTheme();
 let myLibrary = [];
 
 // book constructor
-function Book(title, author, pages, status) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
+class Book {
+  constructor(title, author, pages, status) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+  }
+
+  pushAndMake() {
+    myLibrary.push(this);
+    createCard();
+  }
 }
 
 // create new card when new book is added
@@ -169,6 +173,12 @@ function togglePopup() {
   } else if (popup.style.display === 'block') {
     popup.style.display = 'none';
   }
+
+  // if (popup.style.opacity === '0' || popup.style.opacity === '') {
+  //   popup.style.opacity = '1';
+  // } else if (popup.style.opacity === '1') {
+  //   popup.style.opacity = '0';
+  // }
 }
 
 // event listeners for add new book button and close button
@@ -231,6 +241,7 @@ document.addEventListener('click', (event) => {
   }
 });
 
+// DOM elements for collapsible sections
 const sectionTitle1 = document.getElementById('section-title-1');
 const sectionTitle2 = document.getElementById('section-title-2');
 const sectionTitle3 = document.getElementById('section-title-3');
@@ -322,105 +333,62 @@ sectionTitle3.addEventListener('click', () => {
 });
 
 // load page with sample books to library
-const sampleBook1 = new Book(
-  'An Enquiry Concerning Human Understanding',
-  'David Hume',
-  '119',
-  'currently reading',
-);
-myLibrary.push(sampleBook1);
-createCard();
+const sampleBooks = [
+  [
+    'An Enquiry Concerning Human Understanding',
+    'David Hume',
+    '119',
+    'currently reading',
+  ],
+  [
+    'Introduction to Mathematical Philosophy',
+    'Bertrand Russell',
+    '208',
+    'to read',
+  ],
+  [
+    'Five Dialogues: Euthyphro, Apology, Crito, Meno, Phaedo ',
+    'Plato',
+    '156',
+    'read',
+  ],
+  ['The Republic', 'Plato', '416', 'read'],
+  ['Against Method', 'Paul Feyerabend', '296', 'read'],
+  [
+    'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself',
+    'Sean Carroll',
+    '480',
+    'read',
+  ],
+  ['The Structure of Scientific Revolutions', 'Thomas Kuhn', '226', 'read'],
+  [
+    'The Demon-Haunted World: Science as a Candle in the Dark',
+    'Carl Sagan',
+    '459',
+    'read',
+  ],
+  ['Beyond Good and Evil', 'Friedrich Nietzsche', '240', 'read'],
+  [
+    'Philosophical Foundations of Neuroscience',
+    'M.R. Bennett, P.M. Hacker',
+    '480',
+    'currently reading',
+  ],
+  [
+    'The Logic of Scientific Discovery',
+    'Karl Popper',
+    '544',
+    'currently reading',
+  ],
+  ['Critique of Pure Reason', 'Immanuel Kant', '785', 'to read'],
+];
 
-const sampleBook2 = new Book(
-  'Introduction to Mathematical Philosophy',
-  'Bertrand Russell',
-  '208',
-  'to read',
-);
-myLibrary.push(sampleBook2);
-createCard();
-
-const sampleBook3 = new Book(
-  'The Birth of the Clinic: An Archaeology of Medical Perception',
-  'Michel Foucault',
-  '102400',
-  'read',
-);
-myLibrary.push(sampleBook3);
-createCard();
-
-const sampleBook4 = new Book('The Republic', 'Plato', '416', 'read');
-myLibrary.push(sampleBook4);
-createCard();
-
-const sampleBook5 = new Book(
-  'Against Method',
-  'Paul Feyerabend',
-  '296',
-  'read',
-);
-myLibrary.push(sampleBook5);
-createCard();
-
-const sampleBook6 = new Book(
-  'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself',
-  'Sean Carroll',
-  '480',
-  'read',
-);
-myLibrary.push(sampleBook6);
-createCard();
-
-const sampleBook7 = new Book(
-  'The Structure of Scientific Revolutions',
-  'Thomas Kuhn',
-  '226',
-  'read',
-);
-myLibrary.push(sampleBook7);
-createCard();
-
-const sampleBook8 = new Book(
-  'The Demon-Haunted World: Science as a Candle in the Dark',
-  'Carl Sagan',
-  '459',
-  'read',
-);
-myLibrary.push(sampleBook8);
-createCard();
-
-const sampleBook9 = new Book(
-  'Beyond Good and Evil',
-  'Friedrich Nietzsche',
-  '240',
-  'read',
-);
-myLibrary.push(sampleBook9);
-createCard();
-
-const sampleBook10 = new Book(
-  'Philosophical Foundations of Neuroscience',
-  'M.R. Bennett, P.M. Hacker',
-  '480',
-  'currently reading',
-);
-myLibrary.push(sampleBook10);
-createCard();
-
-const sampleBook11 = new Book(
-  'The Logic of Scientific Discovery',
-  'Karl Popper',
-  '544',
-  'currently reading',
-);
-myLibrary.push(sampleBook11);
-createCard();
-
-const sampleBook12 = new Book(
-  'Critique of Pure Reason',
-  'Immanuel Kant',
-  '785',
-  'to read',
-);
-myLibrary.push(sampleBook12);
-createCard();
+for (let i = 0; i <= 11; i += 1) {
+  let sampleBook = new Book(
+    sampleBooks[i][0],
+    sampleBooks[i][1],
+    sampleBooks[i][2],
+    sampleBooks[i][3],
+  );
+  sampleBook.pushAndMake();
+}

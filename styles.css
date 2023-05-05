@@ -158,6 +158,7 @@ a {
 .popup {
   position: absolute;
   display: none;
+  /* opacity: 0; */
   height: 40vh;
   width: clamp(300px, 30vw, 700px);
   left: 35%;
