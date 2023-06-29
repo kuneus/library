@@ -4,6 +4,9 @@ const titleInput = document.getElementById('book-title');
 const authorInput = document.getElementById('book-author');
 const pageInput = document.getElementById('page-input');
 const statusInput = document.getElementById('book-status');
+const titleError = document.querySelector('#title-error');
+const authorError = document.querySelector('#author-error');
+const pagesError = document.querySelector('#pages-error');
 
 // toggle light/dark theme
 function setTheme() {
@@ -142,6 +145,49 @@ function createCard() {
   }
 }
 
+// check validity of form input values
+const checkValidity = () => {
+  let validity = false;
+
+  // if title input is empty
+  if (titleInput.value === '') {
+    titleError.textContent = 'Please submit a book title';
+    // titleError.style.backgroundColor = 'red';
+  } else {
+    titleError.textContent = '';
+    titleError.style.backgroundColor = 'transparent';
+  }
+
+  // if author input is empty
+  if (authorInput.value === '') {
+    authorError.textContent = 'Please submit a book author';
+    // authorError.style.backgroundColor = 'red';
+  } else {
+    authorError.textContent = '';
+    authorError.style.backgroundColor = 'transparent';
+  }
+
+  // if page number input is empty
+  if (pageInput.value === '') {
+    pagesError.textContent = 'Please submit the number of pages';
+    // pagesError.style.backgroundColor = 'red';
+  } else {
+    pagesError.textContent = '';
+    // pagesError.style.backgroundColor = 'transparent';
+  }
+
+  // if all inputs are completed
+  if (
+    titleInput.value !== '' &&
+    authorInput.value !== '' &&
+    pageInput.value !== ''
+  ) {
+    validity = true;
+  }
+
+  return validity;
+};
+
 // Takes form's input values as arguments for Book constructor then pushes to library array
 function addBookToLibrary() {
   const titleValue = titleInput.value;
@@ -149,18 +195,26 @@ function addBookToLibrary() {
   const pagesValue = pageInput.value;
   const statusValue = statusInput.value;
 
-  if (titleValue !== '' && authorValue !== '' && pagesValue !== '') {
+  // if all fields are not empty
+  if (checkValidity()) {
     const book1 = new Book(titleValue, authorValue, pagesValue, statusValue);
     myLibrary.push(book1);
 
-    // clear input fields
-    titleInput.value = '';
-    authorInput.value = '';
-    pageInput.value = '';
     createCard();
     togglePopup();
   }
 }
+
+// clear input fields and error messages
+const clearInputFields = () => {
+  titleInput.value = '';
+  authorInput.value = '';
+  pageInput.value = '';
+
+  titleError.textContent = '';
+  authorError.textContent = '';
+  pagesError.textContent = '';
+};
 
 const addBookBtn = document.getElementById('add-book-btn');
 const popup = document.getElementById('form-popup');
@@ -170,23 +224,22 @@ const closeBtn = document.getElementById('close-btn');
 function togglePopup() {
   if (popup.style.display === 'none' || popup.style.display === '') {
     popup.style.display = 'block';
+    clearInputFields();
   } else if (popup.style.display === 'block') {
     popup.style.display = 'none';
   }
-
-  // if (popup.style.opacity === '0' || popup.style.opacity === '') {
-  //   popup.style.opacity = '1';
-  // } else if (popup.style.opacity === '1') {
-  //   popup.style.opacity = '0';
-  // }
 }
 
 // event listeners for add new book button and close button
-addBookBtn.addEventListener('click', togglePopup);
+addBookBtn.addEventListener('click', () => {
+  togglePopup();
+});
 closeBtn.addEventListener('click', togglePopup);
 
 // event listener for submit button
-submitBtn.addEventListener('click', addBookToLibrary);
+submitBtn.addEventListener('click', () => {
+  addBookToLibrary();
+});
 
 // event listener for delete button
 document.addEventListener('click', (event) => {

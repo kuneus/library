@@ -101,21 +101,50 @@
 
       <!-- POPUP FORM FOR ADDING NEW BOOK-->
       <div class="popup" id="form-popup">
-        <form action="" method="get" class="form-container">
+        <form
+          action=""
+          method="get"
+          class="form-container"
+          novalidate
+          onsubmit="return false"
+        >
           <div class="form-rows">
-            <label for="book-title">Book Title:</label>
-            <input type="text" id="book-title" name="title" required />
-            <label for="book-author">Author:</label>
-            <input type="text" id="book-author" name="author" required />
-            <label for="page-input">Pages:</label>
-            <input type="tel" id="page-input" name="page" required />
-            <label for="book-status">Read the book?</label>
-            <select id="book-status" name="status" required>
-              <option value="read">Read</option>
-              <option value="currently reading">Currently reading</option>
-              <option value="to read">Want to read</option>
-            </select>
+            <!-- book title -->
+            <label for="book-title">
+              <span>Book Title:</span>
+              <input type="text" id="book-title" name="title" required />
+              <span></span>
+              <span id="title-error" class="error">.</span>
+            </label>
+
+            <!-- author -->
+            <label for="book-author">
+              <span>Author:</span>
+              <input type="text" id="book-author" name="author" required />
+              <span></span>
+              <span id="author-error" class="error">.</span>
+            </label>
+
+            <!-- number of pages -->
+            <label for="page-input">
+              <spna>Pages:</spna>
+              <input type="tel" id="page-input" name="page" required />
+              <span></span>
+              <span id="pages-error" class="error">.</span>
+            </label>
+
+            <!-- read status -->
+            <label for="book-status">
+              <span>Read the book?</span>
+              <select id="book-status" name="status" required>
+                <option value="read">Read</option>
+                <option value="currently reading">Currently reading</option>
+                <option value="to read">Want to read</option>
+              </select>
+            </label>
           </div>
+
+          <!-- Add and Close buttons -->
           <div class="form-rows-2">
             <button type="submit" id="submit-btn">📙 Add Book!</button>
             <button type="button" id="close-btn">Close</button>
